@@ -40,16 +40,12 @@ router.get("/sensor-data-db", getSensorDataFromDB);
 router.get("/action-history", getActionHistory);
 router.get("/sensor-data", getSensorData);
 
-router.get("/search-action", (req, res) => {
-  searchDataFromTo(req, res);
-});
-
-router.get("/search-action", (req, res) => {
+router.get("/results/action", (req, res) => {
   const collectionName = process.env.COLLECTION_NAME_HISTORY;
   searchDataFromTo(req, res, collectionName);
 });
 
-router.get("/search-sensor", (req, res) => {
+router.get("/results/sensor", (req, res) => {
   const collectionName = process.env.COLLECTION_NAME_SENSOR;
   searchDataFromTo(req, res, collectionName);
 });
