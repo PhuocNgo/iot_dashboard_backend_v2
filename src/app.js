@@ -22,6 +22,6 @@ app.get("/", (_, res) => {
   res.status(200).send({ message: "Hello World!" });
 });
 
-app.use("/api", router);
+app.use("/api/v1", router);
 
 module.exports = app;

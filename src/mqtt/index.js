@@ -37,7 +37,7 @@ class MqttConnection {
       [fanPub, lightPub, airConditionerPub, sensorsDataPub],
       () => {
         console.log(
-          `Subscribed to ${fanPub}, ${lightPub}, ${airConditionerPub} topics.`
+          `Subscribed to ${fanPub}, ${lightPub}, ${airConditionerPub}, ${sensorsDataPub} topics.`
         );
       }
     );

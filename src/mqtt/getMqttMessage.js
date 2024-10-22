@@ -1,4 +1,4 @@
-const MqttConnection = require(".");
+const MqttConnection = require("./index");
 
 const getMqttMessage = (topic) => {
   return new Promise((resolve) => {

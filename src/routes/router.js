@@ -1,45 +1,27 @@
 const express = require("express");
 
 const changeDeviceStatus = require("../controllers/changeDeviceStatus");
-const saveSensorData = require("../controllers/saveSensorData");
-const saveActionsHistory = require("../controllers/saveActionHistory");
-const getSensorDataFromDB = require("../controllers/getSensorDataFromDB");
-const getActionHistory = require("../controllers/getActionHistory");
+const saveData = require("../controllers/saveData");
 const getSensorData = require("../controllers/getSensorData");
 
-const {
-  lightSub,
-  lightPub,
-  fanSub,
-  fanPub,
-  airConditionerSub,
-  airConditionerPub,
-} = require("../mqtt/topics");
 const searchDataFromTo = require("../controllers/searchDataFromTo");
+const getAndSearchActionHistories = require("../controllers/getAndSearchActionHistories");
+const getAndSearchSensorDatas = require("../controllers/getAndSearchSensorDatas");
 
 const router = express.Router();
 
 // post
-router.post("/light-shift", async (req, res) => {
-  changeDeviceStatus(req, res, lightSub, lightPub);
-});
+router.post("/device-status-shift", changeDeviceStatus);
+router.post("/data/:data_name", saveData);
 
-router.post("/fan-shift", async (req, res) => {
-  changeDeviceStatus(req, res, fanSub, fanPub);
-});
-
-router.post("/air-conditioner-shift", async (req, res) => {
-  changeDeviceStatus(req, res, airConditionerSub, airConditionerPub);
-});
-
-router.post("/sensor-data-db", saveSensorData);
-router.post("/action-history", saveActionsHistory);
-
-// get
-router.get("/sensor-data-db", getSensorDataFromDB);
-router.get("/action-history", getActionHistory);
+// get:
 router.get("/sensor-data", getSensorData);
 
+// search and get:
+router.post("/results/action_histories", getAndSearchActionHistories);
+router.post("/results/sensor_datas", getAndSearchSensorDatas);
+
+// search:
 router.get("/results/action", (req, res) => {
   const collectionName = process.env.COLLECTION_NAME_HISTORY;
   searchDataFromTo(req, res, collectionName);

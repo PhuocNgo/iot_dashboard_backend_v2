@@ -1,7 +1,10 @@
 const MqttConnection = require("../mqtt");
 const getMqttMessage = require("../mqtt/getMqttMessage");
 
-const changeDeviceStatus = async (req, res, topicSub, topicPub) => {
+const changeDeviceStatus = async (req, res) => {
+  const topicSub = req.query.topic_sub;
+  const topicPub = req.query.topic_pub;
+
   const message = req.body.message;
   let receivedMessageRes = "";
 

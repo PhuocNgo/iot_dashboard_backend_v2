@@ -13,7 +13,7 @@ const getSensorData = async (_, res) => {
   } catch (err) {
     console.log(`Cannot get sensor data directly: ${err.message}!`);
     res.status(404).send({
-      data: [],
+      data: {},
     });
   }
 };
