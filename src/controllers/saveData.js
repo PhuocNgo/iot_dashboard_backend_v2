@@ -20,6 +20,7 @@ const saveData = (req, res) => {
         temperature: dataReceived.temperature,
         humidity: dataReceived.humidity,
         brightness: dataReceived.brightness,
+        wind: dataReceived.wind,
         time: dataReceived.time,
       };
       break;

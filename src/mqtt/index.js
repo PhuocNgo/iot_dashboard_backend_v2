@@ -4,6 +4,9 @@ const {
   lightPub,
   airConditionerPub,
   sensorsDataPub,
+  newLightPub1,
+  newLightPub2,
+  newLightPub3,
 } = require("./topics");
 
 const clientInfor = {
@@ -34,7 +37,15 @@ class MqttConnection {
 
   subscribe() {
     MqttConnection.client.subscribe(
-      [fanPub, lightPub, airConditionerPub, sensorsDataPub],
+      [
+        fanPub,
+        lightPub,
+        airConditionerPub,
+        sensorsDataPub,
+        newLightPub1,
+        newLightPub2,
+        newLightPub3,
+      ],
       () => {
         console.log(
           `Subscribed to ${fanPub}, ${lightPub}, ${airConditionerPub}, ${sensorsDataPub} topics.`
